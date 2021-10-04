@@ -1,0 +1,467 @@
+# depslib dependency file v1.0
+1633354161 source:/home/chonk/Projects/C++/Electricity/main.cpp
+	<SFML/Graphics.hpp>
+	"app.h"
+
+1633066556 /home/chonk/Projects/C++/Electricity/app.h
+	<SFML/Graphics.hpp>
+
+1633354810 source:/home/chonk/Projects/C++/Electricity/app.cpp
+	"app.h"
+
+1633354161 source:/home/chonk/Projects/C++/Electricity/src/main.cpp
+	<SFML/Graphics.hpp>
+	"app.h"
+
+1633355643 /home/chonk/Projects/C++/Electricity/src/app.h
+	<SFML/Graphics.hpp>
+
+1633355743 source:/home/chonk/Projects/C++/Electricity/src/debug.cpp
+	"debug.h"
+	"app.h"
+
+1632569919 /home/chonk/Projects/C++/Electricity/src/debug.h
+	"SFML/Graphics.hpp"
+	<string>
+	<vector>
+
+1633373445 source:/home/chonk/Projects/C++/Electricity/src/app.cpp
+	"app.h"
+	"debug.h"
+	"physics_solver.h"
+
+1633373623 /home/chonk/Projects/C++/Electricity/src/physics_solver.h
+	<vector>
+	"particle.h"
+
+1633374352 /home/chonk/Projects/C++/Electricity/src/particle.h
+	<SFML/Graphics.hpp>
+
+1633380736 source:/home/chonk/Projects/C++/Electricity/src/physics_solver.cpp
+	"physics_solver.h"
+	<SFML/Graphics.hpp>
+	"tools.h"
+	<array>
+	"debug.h"
+	"app.h"
+
+1633378888 /home/chonk/Projects/C++/Electricity/src/tools.h
+	"SFML/Graphics.hpp"
+	"glm/vec2.hpp"
+	"glm/geometric.hpp"
+	<math.h>
+
+1586699936 /home/chonk/Projects/C++/Electricity/dependencies/include//glm/vec2.hpp
+	"./ext/vector_bool2.hpp"
+	"./ext/vector_bool2_precision.hpp"
+	"./ext/vector_float2.hpp"
+	"./ext/vector_float2_precision.hpp"
+	"./ext/vector_double2.hpp"
+	"./ext/vector_double2_precision.hpp"
+	"./ext/vector_int2.hpp"
+	"./ext/vector_int2_sized.hpp"
+	"./ext/vector_uint2.hpp"
+	"./ext/vector_uint2_sized.hpp"
+
+1537176751 /home/chonk/Projects/C++/Electricity/dependencies/include//glm/ext/vector_bool2.hpp
+	"../detail/type_vec2.hpp"
+
+1540992241 /home/chonk/Projects/C++/Electricity/dependencies/include//glm/detail/type_vec2.hpp
+	"qualifier.hpp"
+	"_swizzle.hpp"
+	"_swizzle_func.hpp"
+	<cstddef>
+	"type_vec2.inl"
+
+1574087505 /home/chonk/Projects/C++/Electricity/dependencies/include//glm/detail/qualifier.hpp
+	"setup.hpp"
+
+1585558029 /home/chonk/Projects/C++/Electricity/dependencies/include//glm/detail/setup.hpp
+	<cassert>
+	<cstddef>
+	"../simd/platform.h"
+	<CL/sycl.hpp>
+	<limits>
+	<cstdint>
+	<type_traits>
+
+1574087505 /home/chonk/Projects/C++/Electricity/dependencies/include//glm/simd/platform.h
+	<cuda.h>
+	<immintrin.h>
+	<immintrin.h>
+	<popcntintrin.h>
+	<nmmintrin.h>
+	<smmintrin.h>
+	<tmmintrin.h>
+	<pmmintrin.h>
+	<emmintrin.h>
+	"neon.h"
+
+1574087505 /home/chonk/Projects/C++/Electricity/dependencies/include//glm/simd/neon.h
+	<arm_neon.h>
+
+1535531570 /home/chonk/Projects/C++/Electricity/dependencies/include//glm/detail/_swizzle.hpp
+
+1535531570 /home/chonk/Projects/C++/Electricity/dependencies/include//glm/detail/_swizzle_func.hpp
+
+1540992241 /home/chonk/Projects/C++/Electricity/dependencies/include//glm/detail/type_vec2.inl
+	"./compute_vector_relational.hpp"
+
+1533818821 /home/chonk/Projects/C++/Electricity/dependencies/include//glm/detail/compute_vector_relational.hpp
+	"setup.hpp"
+	<limits>
+
+1537176751 /home/chonk/Projects/C++/Electricity/dependencies/include//glm/ext/vector_bool2_precision.hpp
+	"../detail/type_vec2.hpp"
+
+1537176751 /home/chonk/Projects/C++/Electricity/dependencies/include//glm/ext/vector_float2.hpp
+	"../detail/type_vec2.hpp"
+
+1537176751 /home/chonk/Projects/C++/Electricity/dependencies/include//glm/ext/vector_float2_precision.hpp
+	"../detail/type_vec2.hpp"
+
+1537176751 /home/chonk/Projects/C++/Electricity/dependencies/include//glm/ext/vector_double2.hpp
+	"../detail/type_vec2.hpp"
+
+1537176751 /home/chonk/Projects/C++/Electricity/dependencies/include//glm/ext/vector_double2_precision.hpp
+	"../detail/type_vec2.hpp"
+
+1537176751 /home/chonk/Projects/C++/Electricity/dependencies/include//glm/ext/vector_int2.hpp
+	"../detail/type_vec2.hpp"
+
+1586699936 /home/chonk/Projects/C++/Electricity/dependencies/include//glm/ext/vector_int2_sized.hpp
+	"../ext/vector_int2.hpp"
+	"../ext/scalar_int_sized.hpp"
+
+1554373468 /home/chonk/Projects/C++/Electricity/dependencies/include//glm/ext/scalar_int_sized.hpp
+	"../detail/setup.hpp"
+
+1537176751 /home/chonk/Projects/C++/Electricity/dependencies/include//glm/ext/vector_uint2.hpp
+	"../detail/type_vec2.hpp"
+
+1586699936 /home/chonk/Projects/C++/Electricity/dependencies/include//glm/ext/vector_uint2_sized.hpp
+	"../ext/vector_uint2.hpp"
+	"../ext/scalar_uint_sized.hpp"
+
+1537176751 /home/chonk/Projects/C++/Electricity/dependencies/include//glm/ext/scalar_uint_sized.hpp
+	"../detail/setup.hpp"
+
+1537176751 /home/chonk/Projects/C++/Electricity/dependencies/include//glm/geometric.hpp
+	"detail/type_vec3.hpp"
+	"detail/func_geometric.inl"
+
+1540992241 /home/chonk/Projects/C++/Electricity/dependencies/include//glm/detail/type_vec3.hpp
+	"qualifier.hpp"
+	"_swizzle.hpp"
+	"_swizzle_func.hpp"
+	<cstddef>
+	"type_vec3.inl"
+
+1540992241 /home/chonk/Projects/C++/Electricity/dependencies/include//glm/detail/type_vec3.inl
+	"compute_vector_relational.hpp"
+
+1537176751 /home/chonk/Projects/C++/Electricity/dependencies/include//glm/detail/func_geometric.inl
+	"../exponential.hpp"
+	"../common.hpp"
+	"func_geometric_simd.inl"
+
+1537176751 /home/chonk/Projects/C++/Electricity/dependencies/include//glm/exponential.hpp
+	"detail/type_vec1.hpp"
+	"detail/type_vec2.hpp"
+	"detail/type_vec3.hpp"
+	"detail/type_vec4.hpp"
+	<cmath>
+	"detail/func_exponential.inl"
+
+1540992241 /home/chonk/Projects/C++/Electricity/dependencies/include//glm/detail/type_vec1.hpp
+	"qualifier.hpp"
+	"_swizzle.hpp"
+	"_swizzle_func.hpp"
+	<cstddef>
+	"type_vec1.inl"
+
+1586702003 /home/chonk/Projects/C++/Electricity/dependencies/include//glm/detail/type_vec1.inl
+	"./compute_vector_relational.hpp"
+
+1574087505 /home/chonk/Projects/C++/Electricity/dependencies/include//glm/detail/type_vec4.hpp
+	"qualifier.hpp"
+	"_swizzle.hpp"
+	"_swizzle_func.hpp"
+	<cstddef>
+	"type_vec4.inl"
+
+1540992241 /home/chonk/Projects/C++/Electricity/dependencies/include//glm/detail/type_vec4.inl
+	"compute_vector_relational.hpp"
+	"type_vec4_simd.inl"
+
+1575896614 /home/chonk/Projects/C++/Electricity/dependencies/include//glm/detail/type_vec4_simd.inl
+
+1533818821 /home/chonk/Projects/C++/Electricity/dependencies/include//glm/detail/func_exponential.inl
+	"../vector_relational.hpp"
+	"_vectorize.hpp"
+	<limits>
+	<cmath>
+	<cassert>
+	"func_exponential_simd.inl"
+
+1537176751 /home/chonk/Projects/C++/Electricity/dependencies/include//glm/vector_relational.hpp
+	"detail/qualifier.hpp"
+	"detail/setup.hpp"
+	"detail/func_vector_relational.inl"
+
+1535531570 /home/chonk/Projects/C++/Electricity/dependencies/include//glm/detail/func_vector_relational.inl
+	"func_vector_relational_simd.inl"
+
+1535531570 /home/chonk/Projects/C++/Electricity/dependencies/include//glm/detail/func_vector_relational_simd.inl
+
+1574087505 /home/chonk/Projects/C++/Electricity/dependencies/include//glm/detail/_vectorize.hpp
+
+1533818821 /home/chonk/Projects/C++/Electricity/dependencies/include//glm/detail/func_exponential_simd.inl
+	"../simd/exponential.h"
+
+1531731968 /home/chonk/Projects/C++/Electricity/dependencies/include//glm/simd/exponential.h
+	"platform.h"
+
+1556285066 /home/chonk/Projects/C++/Electricity/dependencies/include//glm/common.hpp
+	"detail/qualifier.hpp"
+	"detail/_fixes.hpp"
+	"detail/func_common.inl"
+
+1535531570 /home/chonk/Projects/C++/Electricity/dependencies/include//glm/detail/_fixes.hpp
+	<cmath>
+
+1575896614 /home/chonk/Projects/C++/Electricity/dependencies/include//glm/detail/func_common.inl
+	"../vector_relational.hpp"
+	"compute_common.hpp"
+	"type_vec1.hpp"
+	"type_vec2.hpp"
+	"type_vec3.hpp"
+	"type_vec4.hpp"
+	"_vectorize.hpp"
+	<limits>
+	"func_common_simd.inl"
+
+1537176751 /home/chonk/Projects/C++/Electricity/dependencies/include//glm/detail/compute_common.hpp
+	"setup.hpp"
+	<limits>
+
+1535531570 /home/chonk/Projects/C++/Electricity/dependencies/include//glm/detail/func_common_simd.inl
+	"../simd/common.h"
+	<immintrin.h>
+
+1554373468 /home/chonk/Projects/C++/Electricity/dependencies/include//glm/simd/common.h
+	"platform.h"
+
+1585558029 /home/chonk/Projects/C++/Electricity/dependencies/include//glm/detail/func_geometric_simd.inl
+	"../simd/geometric.h"
+
+1525695782 /home/chonk/Projects/C++/Electricity/dependencies/include//glm/simd/geometric.h
+	"common.h"
+
+1586699936 /home/chonk/Projects/C++/Electricity/dependencies/include/glm/vec2.hpp
+	"./ext/vector_bool2.hpp"
+	"./ext/vector_bool2_precision.hpp"
+	"./ext/vector_float2.hpp"
+	"./ext/vector_float2_precision.hpp"
+	"./ext/vector_double2.hpp"
+	"./ext/vector_double2_precision.hpp"
+	"./ext/vector_int2.hpp"
+	"./ext/vector_int2_sized.hpp"
+	"./ext/vector_uint2.hpp"
+	"./ext/vector_uint2_sized.hpp"
+
+1537176751 /home/chonk/Projects/C++/Electricity/dependencies/include/glm/ext/vector_bool2.hpp
+	"../detail/type_vec2.hpp"
+
+1540992241 /home/chonk/Projects/C++/Electricity/dependencies/include/glm/detail/type_vec2.hpp
+	"qualifier.hpp"
+	"_swizzle.hpp"
+	"_swizzle_func.hpp"
+	<cstddef>
+	"type_vec2.inl"
+
+1574087505 /home/chonk/Projects/C++/Electricity/dependencies/include/glm/detail/qualifier.hpp
+	"setup.hpp"
+
+1585558029 /home/chonk/Projects/C++/Electricity/dependencies/include/glm/detail/setup.hpp
+	<cassert>
+	<cstddef>
+	"../simd/platform.h"
+	<CL/sycl.hpp>
+	<limits>
+	<cstdint>
+	<type_traits>
+
+1574087505 /home/chonk/Projects/C++/Electricity/dependencies/include/glm/simd/platform.h
+	<cuda.h>
+	<immintrin.h>
+	<immintrin.h>
+	<popcntintrin.h>
+	<nmmintrin.h>
+	<smmintrin.h>
+	<tmmintrin.h>
+	<pmmintrin.h>
+	<emmintrin.h>
+	"neon.h"
+
+1574087505 /home/chonk/Projects/C++/Electricity/dependencies/include/glm/simd/neon.h
+	<arm_neon.h>
+
+1535531570 /home/chonk/Projects/C++/Electricity/dependencies/include/glm/detail/_swizzle.hpp
+
+1535531570 /home/chonk/Projects/C++/Electricity/dependencies/include/glm/detail/_swizzle_func.hpp
+
+1540992241 /home/chonk/Projects/C++/Electricity/dependencies/include/glm/detail/type_vec2.inl
+	"./compute_vector_relational.hpp"
+
+1533818821 /home/chonk/Projects/C++/Electricity/dependencies/include/glm/detail/compute_vector_relational.hpp
+	"setup.hpp"
+	<limits>
+
+1537176751 /home/chonk/Projects/C++/Electricity/dependencies/include/glm/ext/vector_bool2_precision.hpp
+	"../detail/type_vec2.hpp"
+
+1537176751 /home/chonk/Projects/C++/Electricity/dependencies/include/glm/ext/vector_float2.hpp
+	"../detail/type_vec2.hpp"
+
+1537176751 /home/chonk/Projects/C++/Electricity/dependencies/include/glm/ext/vector_float2_precision.hpp
+	"../detail/type_vec2.hpp"
+
+1537176751 /home/chonk/Projects/C++/Electricity/dependencies/include/glm/ext/vector_double2.hpp
+	"../detail/type_vec2.hpp"
+
+1537176751 /home/chonk/Projects/C++/Electricity/dependencies/include/glm/ext/vector_double2_precision.hpp
+	"../detail/type_vec2.hpp"
+
+1537176751 /home/chonk/Projects/C++/Electricity/dependencies/include/glm/ext/vector_int2.hpp
+	"../detail/type_vec2.hpp"
+
+1586699936 /home/chonk/Projects/C++/Electricity/dependencies/include/glm/ext/vector_int2_sized.hpp
+	"../ext/vector_int2.hpp"
+	"../ext/scalar_int_sized.hpp"
+
+1554373468 /home/chonk/Projects/C++/Electricity/dependencies/include/glm/ext/scalar_int_sized.hpp
+	"../detail/setup.hpp"
+
+1537176751 /home/chonk/Projects/C++/Electricity/dependencies/include/glm/ext/vector_uint2.hpp
+	"../detail/type_vec2.hpp"
+
+1586699936 /home/chonk/Projects/C++/Electricity/dependencies/include/glm/ext/vector_uint2_sized.hpp
+	"../ext/vector_uint2.hpp"
+	"../ext/scalar_uint_sized.hpp"
+
+1537176751 /home/chonk/Projects/C++/Electricity/dependencies/include/glm/ext/scalar_uint_sized.hpp
+	"../detail/setup.hpp"
+
+1537176751 /home/chonk/Projects/C++/Electricity/dependencies/include/glm/geometric.hpp
+	"detail/type_vec3.hpp"
+	"detail/func_geometric.inl"
+
+1540992241 /home/chonk/Projects/C++/Electricity/dependencies/include/glm/detail/type_vec3.hpp
+	"qualifier.hpp"
+	"_swizzle.hpp"
+	"_swizzle_func.hpp"
+	<cstddef>
+	"type_vec3.inl"
+
+1540992241 /home/chonk/Projects/C++/Electricity/dependencies/include/glm/detail/type_vec3.inl
+	"compute_vector_relational.hpp"
+
+1537176751 /home/chonk/Projects/C++/Electricity/dependencies/include/glm/detail/func_geometric.inl
+	"../exponential.hpp"
+	"../common.hpp"
+	"func_geometric_simd.inl"
+
+1537176751 /home/chonk/Projects/C++/Electricity/dependencies/include/glm/exponential.hpp
+	"detail/type_vec1.hpp"
+	"detail/type_vec2.hpp"
+	"detail/type_vec3.hpp"
+	"detail/type_vec4.hpp"
+	<cmath>
+	"detail/func_exponential.inl"
+
+1540992241 /home/chonk/Projects/C++/Electricity/dependencies/include/glm/detail/type_vec1.hpp
+	"qualifier.hpp"
+	"_swizzle.hpp"
+	"_swizzle_func.hpp"
+	<cstddef>
+	"type_vec1.inl"
+
+1586702003 /home/chonk/Projects/C++/Electricity/dependencies/include/glm/detail/type_vec1.inl
+	"./compute_vector_relational.hpp"
+
+1574087505 /home/chonk/Projects/C++/Electricity/dependencies/include/glm/detail/type_vec4.hpp
+	"qualifier.hpp"
+	"_swizzle.hpp"
+	"_swizzle_func.hpp"
+	<cstddef>
+	"type_vec4.inl"
+
+1540992241 /home/chonk/Projects/C++/Electricity/dependencies/include/glm/detail/type_vec4.inl
+	"compute_vector_relational.hpp"
+	"type_vec4_simd.inl"
+
+1575896614 /home/chonk/Projects/C++/Electricity/dependencies/include/glm/detail/type_vec4_simd.inl
+
+1533818821 /home/chonk/Projects/C++/Electricity/dependencies/include/glm/detail/func_exponential.inl
+	"../vector_relational.hpp"
+	"_vectorize.hpp"
+	<limits>
+	<cmath>
+	<cassert>
+	"func_exponential_simd.inl"
+
+1537176751 /home/chonk/Projects/C++/Electricity/dependencies/include/glm/vector_relational.hpp
+	"detail/qualifier.hpp"
+	"detail/setup.hpp"
+	"detail/func_vector_relational.inl"
+
+1535531570 /home/chonk/Projects/C++/Electricity/dependencies/include/glm/detail/func_vector_relational.inl
+	"func_vector_relational_simd.inl"
+
+1535531570 /home/chonk/Projects/C++/Electricity/dependencies/include/glm/detail/func_vector_relational_simd.inl
+
+1574087505 /home/chonk/Projects/C++/Electricity/dependencies/include/glm/detail/_vectorize.hpp
+
+1533818821 /home/chonk/Projects/C++/Electricity/dependencies/include/glm/detail/func_exponential_simd.inl
+	"../simd/exponential.h"
+
+1531731968 /home/chonk/Projects/C++/Electricity/dependencies/include/glm/simd/exponential.h
+	"platform.h"
+
+1556285066 /home/chonk/Projects/C++/Electricity/dependencies/include/glm/common.hpp
+	"detail/qualifier.hpp"
+	"detail/_fixes.hpp"
+	"detail/func_common.inl"
+
+1535531570 /home/chonk/Projects/C++/Electricity/dependencies/include/glm/detail/_fixes.hpp
+	<cmath>
+
+1575896614 /home/chonk/Projects/C++/Electricity/dependencies/include/glm/detail/func_common.inl
+	"../vector_relational.hpp"
+	"compute_common.hpp"
+	"type_vec1.hpp"
+	"type_vec2.hpp"
+	"type_vec3.hpp"
+	"type_vec4.hpp"
+	"_vectorize.hpp"
+	<limits>
+	"func_common_simd.inl"
+
+1537176751 /home/chonk/Projects/C++/Electricity/dependencies/include/glm/detail/compute_common.hpp
+	"setup.hpp"
+	<limits>
+
+1535531570 /home/chonk/Projects/C++/Electricity/dependencies/include/glm/detail/func_common_simd.inl
+	"../simd/common.h"
+	<immintrin.h>
+
+1554373468 /home/chonk/Projects/C++/Electricity/dependencies/include/glm/simd/common.h
+	"platform.h"
+
+1585558029 /home/chonk/Projects/C++/Electricity/dependencies/include/glm/detail/func_geometric_simd.inl
+	"../simd/geometric.h"
+
+1525695782 /home/chonk/Projects/C++/Electricity/dependencies/include/glm/simd/geometric.h
+	"common.h"
+

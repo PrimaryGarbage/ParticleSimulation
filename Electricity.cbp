@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="Electricity" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/Electricity" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-Wall" />
+					<Add option="-std=gnu++17" />
+					<Add option="-g" />
+					<Add directory="dependencies/include/" />
+				</Compiler>
+				<ResourceCompiler>
+					<Add directory="dependencies/include" />
+				</ResourceCompiler>
+				<Linker>
+					<Add library="sfml-graphics" />
+					<Add library="sfml-window" />
+					<Add library="sfml-system" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/Electricity" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add option="-std=gnu++17" />
+					<Add directory="dependencies/include" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add library="sfml-graphics" />
+					<Add library="sfml-window" />
+					<Add library="sfml-system" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<Unit filename="src/app.cpp" />
+		<Unit filename="src/app.h" />
+		<Unit filename="src/debug.cpp" />
+		<Unit filename="src/debug.h" />
+		<Unit filename="src/main.cpp" />
+		<Unit filename="src/particle.h" />
+		<Unit filename="src/physics_solver.cpp" />
+		<Unit filename="src/physics_solver.h" />
+		<Unit filename="src/shaders/test_shader.frag" />
+		<Unit filename="src/tools.h" />
+		<Extensions />
+	</Project>
+</CodeBlocks_project_file>
