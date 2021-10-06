@@ -27,7 +27,7 @@ namespace chonk {
             return glm::normalize(vec) * newLength;
 	}
 
-    float sfLength(const sf::Vector2f vec)
+    float sfLength(const sf::Vector2f& vec)
 	{
         return std::sqrt(vec.x * vec.x + vec.y * vec.y);
 	}

@@ -2,7 +2,7 @@
 #include "debug.h"
 #include "physics_solver.h"
 
-using uint = unsigned int;
+typedef unsigned int uint;
 
 sf::RenderWindow* App::window = nullptr;
 uint App::windowWidth = 0u;
@@ -16,14 +16,15 @@ bool App::initialize(unsigned int width, unsigned int height, const char* name) 
 	windowHeight = height;
 	window = new sf::RenderWindow(sf::VideoMode(width, height), name, sf::Style::Titlebar | sf::Style::Close);
 	window->setVerticalSyncEnabled(true);
+	window->setFramerateLimit(60u);
+	window->setKeyRepeatEnabled(false);
     if (window) return true;
     else return false;
 }
 
 void App::run()
 {
-    sf::RectangleShape shape(sf::Vector2f(windowWidth, windowHeight));
-    shape.setFillColor(sf::Color::Green);
+    sf::RectangleShape background(sf::Vector2f(windowWidth, windowHeight));
 
 	sf::Shader testShader;
 	testShader.loadFromFile("./src/shaders/test_shader.frag", sf::Shader::Fragment);
@@ -45,21 +46,33 @@ void App::run()
         {
             if (event.type == sf::Event::Closed)
                 window->close();
+
+            if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::T)
+            {
+                phSolver.particleTrails = !phSolver.particleTrails;
+            }
         }
 
-		if(sf::Mouse::isButtonPressed(sf::Mouse::Left) && window->hasFocus())
-		{
-			sf::Vector2f mousePosition = window->mapPixelToCoords(sf::Mouse::getPosition(*window));
-            //testShader.setParameter("mousePos", mousePosition);
-            Debug::print(std::to_string(mousePosition.x) + "|" + std::to_string(mousePosition.y));
-            phSolver.addParticle(ParticleType::Electron, mousePosition);
-        }
-        else if(sf::Mouse::isButtonPressed(sf::Mouse::Right) && window->hasFocus())
+        if(window->hasFocus())
         {
-            sf::Vector2f mousePosition = window->mapPixelToCoords(sf::Mouse::getPosition(*window));
-            //testShader.setParameter("mousePos", mousePosition);
-            Debug::print(std::to_string(mousePosition.x) + "|" + std::to_string(mousePosition.y));
-            phSolver.addParticle(ParticleType::Proton, mousePosition);
+            if(sf::Mouse::isButtonPressed(sf::Mouse::Left))
+            {
+                sf::Vector2f mousePosition = window->mapPixelToCoords(sf::Mouse::getPosition(*window));
+                //testShader.setParameter("mousePos", mousePosition);
+                Debug::print(std::to_string(mousePosition.x) + "|" + std::to_string(mousePosition.y));
+                phSolver.addParticle(ParticleType::Electron, mousePosition);
+            }
+            if(sf::Mouse::isButtonPressed(sf::Mouse::Right))
+            {
+                sf::Vector2f mousePosition = window->mapPixelToCoords(sf::Mouse::getPosition(*window));
+                //testShader.setParameter("mousePos", mousePosition);
+                Debug::print(std::to_string(mousePosition.x) + "|" + std::to_string(mousePosition.y));
+                phSolver.addParticle(ParticleType::Proton, mousePosition);
+            }
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::C))
+            {
+                phSolver.clearParticles();
+            }
         }
 
 
@@ -69,9 +82,13 @@ void App::run()
 
 
         window->clear();
-        //window->draw(shape, &testShader);
+
+        /////// DRAWING ///////
+        window->draw(background, &testShader);
         phSolver.renderParticles(window);
-        draw();
+        Debug::draw(window);
+        ///////////////////////
+
         window->display();
     }
 }
@@ -84,9 +101,4 @@ void App::close() noexcept
 sf::Vector2i App::getWindowSize()
 {
     return sf::Vector2i(windowWidth, windowHeight);
-}
-
-void App::draw()
-{
-    Debug::draw(window);
 }

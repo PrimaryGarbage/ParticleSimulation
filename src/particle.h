@@ -9,9 +9,9 @@ struct Particle
     ParticleType type;
     sf::Vector2f position;
     sf::Vector2f velocity;
-    bool active = true;
+    bool active = false;
 
-    Particle() = delete;
+    Particle() = default;
     Particle(ParticleType type, sf::Vector2f position = sf::Vector2f(0.0f, 0.0f)) : type(type), position(position), velocity(sf::Vector2f(0.0f, 0.0f)) {}
 
 

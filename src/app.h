@@ -9,8 +9,6 @@ private:
 	static unsigned int windowHeight;
 	static double elapsedTime;
 	static float deltaTime;
-
-	static void draw();
 public:
 	App() = delete;
 	App(const App& other) = delete;
