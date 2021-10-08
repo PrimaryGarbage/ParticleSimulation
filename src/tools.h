@@ -5,17 +5,20 @@
 #include <math.h>
 
 namespace chonk {
+
 	template<typename T>
 	inline sf::Vector2<T> glm_to_sf_vec(const glm::vec<2, T>& vec)
 	{
 		return sf::Vector2<T>(vec.x, vec.y);
 	}
 
+
 	template<typename T>
 	inline glm::vec<2, T> sf_to_glm_vec(const sf::Vector2<T>& vec)
 	{
 		return glm::vec<2, T>(vec.x, vec.y);
 	}
+
 
 	template<typename T>
 	inline glm::vec<2, T> clampVec(const glm::vec<2, T>& vec, const float minVal, const float maxVal)
@@ -27,15 +30,18 @@ namespace chonk {
             return glm::normalize(vec) * newLength;
 	}
 
+
     float sfLength(const sf::Vector2f& vec)
 	{
         return std::sqrt(vec.x * vec.x + vec.y * vec.y);
 	}
 
+
 	sf::Vector2f sfNormalize(const sf::Vector2f& vec)
 	{
         return sf::Vector2f(vec) / sfLength(vec);
 	}
+
 
 	inline sf::Vector2f clampVec(const sf::Vector2f vec, const float minVal, const float maxVal)
 	{
@@ -51,10 +57,12 @@ namespace chonk {
         }
 	}
 
+
 	inline float lerp(float a, float b, float ratio)
 	{
 		return (b - a) * ratio + a;
 	}
+
 
 	inline float lerpAngle(float a, float b, float ratio)
 	{

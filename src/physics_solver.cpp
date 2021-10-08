@@ -9,18 +9,19 @@
 namespace constants
 {
     constexpr float electronMass = 0.0001f;
-    constexpr float electronCharge = - 1.0f;
+    constexpr float electronCharge = - 1.5f;
     constexpr float electronRadius = 0.1f;
     const sf::Color electronColor = sf::Color::Blue;
 
     constexpr float protonMass = 1.0f;
-    constexpr float protonCharge = 1.0f;
+    constexpr float protonCharge = -electronCharge;
     constexpr float protonRadius = 3.0f;
     const sf::Color protonColor = sf::Color::Red;
 
     constexpr float strongForce = 0.1f;
     constexpr float maxSpeed = 100.0f;
     constexpr float maxAcceleration = 500.0f;
+    constexpr float maxDistance = 500.0f;
 }
 
 
@@ -49,6 +50,7 @@ void PhysicsSolver::update(float dt)
         if(particles[i].active)
         {
             solveParticle(i, dt);
+            //solveParticleConcurrent(i, dt);
         }
     }
 
@@ -109,21 +111,150 @@ void PhysicsSolver::trimParticles()
             }
     }
 }
+
 void PhysicsSolver::solveParticle(uint idx, float dt)
 {
-    // get particle1 info
-    //std::unique_lock lck(mtx);
     ParticleInfo info1 = getParticleInfo(particles[idx].type);
-    //lck.unlock();
 
     for(uint j = 0u; j < maxParticles; j++)
     {
         if(!particles[j].active) continue;
 
-        //lck.lock();
         // if particle2 is the same particle or it already has been solved
-        if(idx == j || solvedFlags[j]) continue;
-        //lck.unlock();
+        if(idx == j || solvedFlags[j])
+            continue;
+
+        // get direction vector between them
+        sf::Vector2f dir = particles[idx].position - particles[j].position;
+
+        // get distance between them
+        float distance = chonk::sfLength(dir);
+
+        // skip this particle if distance is too big
+        if(distance > constants::maxDistance) continue;
+
+        // normalize direction vec
+        dir = chonk::sfNormalize(dir);
+
+        // get particle2 info
+        ParticleInfo info2 = getParticleInfo(particles[j].type);
+
+        float impulse;
+        if(distance <= 0.0f) continue;
+
+        if(distance <= info2.radius)
+        {
+            impulse = constants::strongForce;
+        }
+        else
+        {
+            // calculate impulse increment
+            impulse = info1.charge * info2.charge / (distance * distance) * dt;
+        }
+
+        //// ACCELERATION CLAMP ////
+        // calculate particle1 velocity increment
+        //particles[i].velocity += chonk::clampVec(impulse / info1.mass * chonk::sfNormalize(r), 0.0f, constants::maxAcceleration);
+        // calculate particle2 velocity increment
+        //particles[j].velocity += chonk::clampVec(impulse / info2.mass * chonk::sfNormalize(-r), 0.0f, constants::maxAcceleration);
+
+
+        // calculate particle1 velocity increment
+        particles[idx].velocity += impulse / info1.mass * dir;
+        // calculate particle2 velocity increment
+        particles[j].velocity += impulse / info2.mass * (-dir);
+    }
+
+    // clamp velocity length to maxSpeed
+    particles[idx].velocity = chonk::clampVec(particles[idx].velocity, 0.0f, constants::maxSpeed);
+    // apply velocity
+    particles[idx].position += particles[idx].velocity * dt;
+    // append particle vertex into VA
+    particlesVA.append(sf::Vertex(particles[idx].position, getParticleInfo(particles[idx].type).color));
+    // set this particle as solved for this frame
+    solvedFlags[idx] = true;
+}
+
+void PhysicsSolver::solveParticleConcurrent(uint idx, float dt)
+{
+    uint workerMaxIdx = maxParticles / 2u ;
+    uint workerMaxIdx1 = workerMaxIdx;
+    uint workerIdx = idx;
+
+    std::thread worker([&]()
+    {
+        ParticleInfo info1 = getParticleInfo(particles[idx].type);
+        for(uint j = 0u; j < workerMaxIdx; j++)
+        {
+            if(!particles[j].active) continue;
+
+            mtx.lock();
+            // if particle2 is the same particle or it already has been solved
+            if(idx == j || solvedFlags[j])
+            {
+                mtx.unlock();
+                continue;
+            }
+            else
+            {
+                mtx.unlock();
+            }
+
+            // get vector between them
+            sf::Vector2f r = particles[workerIdx].position - particles[j].position;
+
+            // get distance between them
+            float distance = chonk::sfLength(r);
+
+            mtx.lock();
+            // get particle2 info
+            ParticleInfo info2 = getParticleInfo(particles[j].type);
+            mtx.unlock();
+
+            float impulse;
+            if(distance <= 0.0f) continue;
+
+            if(distance <= info2.radius)
+            {
+                impulse = constants::strongForce;
+            }
+            else
+            {
+                // calculate impulse increment
+                impulse = info1.charge * info2.charge / (distance * distance) * dt;
+            }
+
+            //// ACCELERATION CLAMP ////
+            // calculate particle1 velocity increment
+            //particles[i].velocity += chonk::clampVec(impulse / info1.mass * chonk::sfNormalize(r), 0.0f, constants::maxAcceleration);
+            // calculate particle2 velocity increment
+            //particles[j].velocity += chonk::clampVec(impulse / info2.mass * chonk::sfNormalize(-r), 0.0f, constants::maxAcceleration);
+
+
+            // calculate particle1 velocity increment
+            particles[workerIdx].velocity += impulse / info1.mass * chonk::sfNormalize(r);
+            // calculate particle2 velocity increment
+            particles[j].velocity += impulse / info2.mass * chonk::sfNormalize(-r);
+        }
+    });
+
+    ParticleInfo info1 = getParticleInfo(particles[idx].type);
+    for(uint j = workerMaxIdx1; j < maxParticles; j++)
+    {
+        if(!particles[j].active) continue;
+
+        mtx.lock();
+        // if particle2 is the same particle or it already has been solved
+        if(idx == j || solvedFlags[j])
+        {
+            mtx.unlock();
+            continue;
+        }
+        else
+        {
+            mtx.unlock();
+        }
+
 
         // get vector between them
         sf::Vector2f r = particles[idx].position - particles[j].position;
@@ -131,10 +262,10 @@ void PhysicsSolver::solveParticle(uint idx, float dt)
         // get distance between them
         float distance = chonk::sfLength(r);
 
-        //lck.lock();
+        mtx.lock();
         // get particle2 info
         ParticleInfo info2 = getParticleInfo(particles[j].type);
-        //lck.unlock();
+        mtx.unlock();
 
         float impulse;
         if(distance <= 0.0f) continue;
@@ -161,6 +292,8 @@ void PhysicsSolver::solveParticle(uint idx, float dt)
         // calculate particle2 velocity increment
         particles[j].velocity += impulse / info2.mass * chonk::sfNormalize(-r);
     }
+
+    worker.join();
 
     // clamp velocity length to maxSpeed
     particles[idx].velocity = chonk::clampVec(particles[idx].velocity, 0.0f, constants::maxSpeed);;

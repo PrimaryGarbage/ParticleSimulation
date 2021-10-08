@@ -21,6 +21,7 @@ private:
 
     void trimParticles();
     void solveParticle(uint idx, float dt);
+    void solveParticleConcurrent(uint idx, float dt);
     uint countParticles() const;
 public:
     PhysicsSolver();

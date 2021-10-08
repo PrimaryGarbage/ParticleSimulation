@@ -7,7 +7,7 @@ int main()
 {
 	const uint windowWidth = 800u;
 	const uint windowHeight = 800u;
-	const char windowName[] = "Waves";
+	const char windowName[] = "Particles";
 
 	if(App::initialize(windowWidth, windowHeight, windowName))
 	{

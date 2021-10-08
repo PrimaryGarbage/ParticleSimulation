@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "physics_solver.h"
 
 class App
 {
@@ -9,6 +10,9 @@ private:
 	static unsigned int windowHeight;
 	static double elapsedTime;
 	static float deltaTime;
+	static PhysicsSolver phSolver;
+
+	static void getInput();
 public:
 	App() = delete;
 	App(const App& other) = delete;

@@ -13,8 +13,9 @@
 	<SFML/Graphics.hpp>
 	"app.h"
 
-1633409217 /home/chonk/Projects/C++/Electricity/src/app.h
+1633692374 /home/chonk/Projects/C++/Electricity/src/app.h
 	<SFML/Graphics.hpp>
+	"physics_solver.h"
 
 1633355743 source:/home/chonk/Projects/C++/Electricity/src/debug.cpp
 	"debug.h"
@@ -25,12 +26,11 @@
 	<string>
 	<vector>
 
-1633528674 source:/home/chonk/Projects/C++/Electricity/src/app.cpp
+1633692383 source:/home/chonk/Projects/C++/Electricity/src/app.cpp
 	"app.h"
 	"debug.h"
-	"physics_solver.h"
 
-1633528806 /home/chonk/Projects/C++/Electricity/src/physics_solver.h
+1633669569 /home/chonk/Projects/C++/Electricity/src/physics_solver.h
 	<vector>
 	<mutex>
 	<array>
@@ -39,7 +39,7 @@
 1633496822 /home/chonk/Projects/C++/Electricity/src/particle.h
 	<SFML/Graphics.hpp>
 
-1633528821 source:/home/chonk/Projects/C++/Electricity/src/physics_solver.cpp
+1633670534 source:/home/chonk/Projects/C++/Electricity/src/physics_solver.cpp
 	"physics_solver.h"
 	<SFML/Graphics.hpp>
 	"tools.h"
@@ -47,7 +47,7 @@
 	"app.h"
 	<thread>
 
-1633526778 /home/chonk/Projects/C++/Electricity/src/tools.h
+1633669516 /home/chonk/Projects/C++/Electricity/src/tools.h
 	"SFML/Graphics.hpp"
 	"glm/vec2.hpp"
 	"glm/geometric.hpp"
@@ -466,4 +466,43 @@
 
 1525695782 /home/chonk/Projects/C++/Electricity/dependencies/include/glm/simd/geometric.h
 	"common.h"
+
+1629723807 source:/home/chonk/Projects/C++/Electricity/dependencies/src/imgui.cpp
+	"imgui.h"
+	"imgui_internal.h"
+	<ctype.h>
+	<stdio.h>
+	<stddef.h>
+	<stdint.h>
+	<Windows.h>
+	<windows.h>
+	<TargetConditionals.h>
+	"stb_sprintf.h"
+	<Carbon/Carbon.h>
+	<imm.h>
+	"imgui_user.inl"
+
+1629723807 /home/chonk/Projects/C++/Electricity/dependencies/include//imgui.h
+	"imconfig.h"
+	<float.h>
+	<stdarg.h>
+	<stddef.h>
+	<string.h>
+	<assert.h>
+	<stdint.h>
+	"imgui_user.h"
+
+1629723807 /home/chonk/Projects/C++/Electricity/dependencies/include//imconfig.h
+
+1629723807 /home/chonk/Projects/C++/Electricity/dependencies/include//imgui_internal.h
+	"imgui.h"
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<limits.h>
+	<immintrin.h>
+	"imstb_textedit.h"
+
+1629723807 /home/chonk/Projects/C++/Electricity/dependencies/include//imstb_textedit.h
+	<string.h>
 
