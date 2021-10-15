@@ -1,6 +1,6 @@
 #ignore all object files
 *.o
-./obj
+obj/
 
 #ignore build files
-./bin
+bin/
