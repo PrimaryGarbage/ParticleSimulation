@@ -51,11 +51,6 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="dependencies/include/imgui-sfml/imgui-SFML.cpp" />
-		<Unit filename="dependencies/include/imgui/imgui.cpp" />
-		<Unit filename="dependencies/include/imgui/imgui_draw.cpp" />
-		<Unit filename="dependencies/include/imgui/imgui_tables.cpp" />
-		<Unit filename="dependencies/include/imgui/imgui_widgets.cpp" />
 		<Unit filename="src/app.cpp" />
 		<Unit filename="src/app.h" />
 		<Unit filename="src/debug.cpp" />

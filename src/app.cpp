@@ -44,16 +44,7 @@ void App::run()
         sf::Event event;
         while (window->pollEvent(event))
         {
-            if (event.type == sf::Event::Closed)
-                window->close();
-
-
-            ///////// EVENT INPUT //////////
-            if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::T)
-            {
-                phSolver.particleTrails = !phSolver.particleTrails;
-            }
-            ////////////////////////////////
+            processEvent(event);
         }
 
 
@@ -76,11 +67,41 @@ void App::run()
     }
 }
 
+void App::processEvent(const sf::Event& event)
+{
+    switch(event.type)
+    {
+
+        case sf::Event::Closed:
+            {
+                window->close();
+                break;
+            }
+
+        case sf::Event::KeyPressed:
+            {
+                switch(event.key.code)
+                {
+                case sf::Keyboard::T:
+                    phSolver.particleTrails = !phSolver.particleTrails;
+                    break;
+
+                default:
+                    break;
+                }
+            }
+
+        default:
+            break;
+
+    }
+}
+
+
 void App::getInput()
 {
     if(window->hasFocus())
     {
-        //////// STANDARD INPUT /////////
         if(sf::Mouse::isButtonPressed(sf::Mouse::Left))
         {
             sf::Vector2f mousePosition = window->mapPixelToCoords(sf::Mouse::getPosition(*window));
@@ -99,7 +120,6 @@ void App::getInput()
         {
             phSolver.clearParticles();
         }
-        ////////////////////////////////////
     }
 }
 

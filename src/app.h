@@ -13,6 +13,7 @@ private:
 	static PhysicsSolver phSolver;
 
 	static void getInput();
+	static void processEvent(const sf::Event& event);
 public:
 	App() = delete;
 	App(const App& other) = delete;
