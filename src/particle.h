@@ -13,8 +13,6 @@ struct Particle
 
     Particle() = default;
     Particle(ParticleType type, sf::Vector2f position = sf::Vector2f(0.0f, 0.0f)) : type(type), position(position), velocity(sf::Vector2f(0.0f, 0.0f)) {}
-
-
 };
 
 struct ParticleInfo

@@ -18,6 +18,7 @@ private:
     Particle particles[maxParticles];
     sf::VertexArray particlesVA;        // for rendering particles
     bool solvedFlags[maxParticles];
+    uint numberOfParticles = 0u;
 
     void trimParticles();
     void solveParticle(uint idx, float dt);

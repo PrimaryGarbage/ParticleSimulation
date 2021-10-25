@@ -39,9 +39,9 @@ void PhysicsSolver::update(float dt)
     if(!particleTrails)
         particlesVA.clear();
 
-    // clear solvedFlags
-    for(uint i = 0u; i < maxParticles; i++)
-        solvedFlags[i] = false;
+//    // CLEAR SOLVEDFLAGS
+//    FOR(UINT I = 0U; I < MAXPARTICLES; I++)
+//        SOLVEDFLAGS[I] = FALSE;
 
     trimParticles();
 
@@ -74,17 +74,13 @@ void PhysicsSolver::addParticle(ParticleType type, sf::Vector2f position)
             break;
     }
 
+    // no room
     if(i == maxParticles) return;
 
     particles[i].type = type;
     particles[i].position = position;
     particles[i].velocity = sf::Vector2f(0.0f, 0.0f);
     particles[i].active = true;
-
-    /*
-    if(particles.size() >= maxParticles) return;
-    particles.emplace_back(type, position);
-    */
 }
 
 void PhysicsSolver::clearParticles()
@@ -101,10 +97,10 @@ void PhysicsSolver::clearParticles()
 
 void PhysicsSolver::trimParticles()
 {
+    const sf::Vector2i &windSize = App::getWindowSize();
     for(uint i = 0; i < maxParticles; i++)
     {
         const sf::Vector2f &pos = particles[i].position;
-        const sf::Vector2i &windSize = App::getWindowSize();
         if(pos.x < 0 || pos.x > windSize.x || pos.y < 0 || pos.y > windSize.y)
             {
                 particles[i].active = false;
