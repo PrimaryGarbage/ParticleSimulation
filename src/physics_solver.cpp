@@ -49,7 +49,7 @@ void PhysicsSolver::update(float dt)
     {
         if(particles[i].active)
         {
-            solveParticle(i, dt);
+            solveParticle(i, i + 1u,dt);
             //solveParticleConcurrent(i, dt);
         }
     }
@@ -108,16 +108,16 @@ void PhysicsSolver::trimParticles()
     }
 }
 
-void PhysicsSolver::solveParticle(uint idx, float dt)
+void PhysicsSolver::solveParticle(uint idx, uint fromParticle, float dt)
 {
     ParticleInfo info1 = getParticleInfo(particles[idx].type);
 
-    for(uint j = 0u; j < maxParticles; j++)
+    for(uint j = fromParticle; j < maxParticles; j++)
     {
         if(!particles[j].active) continue;
 
-        // if particle2 is the same particle or it already has been solved
-        if(idx == j || solvedFlags[j])
+        // if particle2 is the same particle
+        if(idx == j)
             continue;
 
         // get direction vector between them
@@ -136,7 +136,6 @@ void PhysicsSolver::solveParticle(uint idx, float dt)
         ParticleInfo info2 = getParticleInfo(particles[j].type);
 
         float impulse;
-        if(distance <= 0.0f) continue;
 
         if(distance <= info2.radius)
         {
@@ -167,26 +166,24 @@ void PhysicsSolver::solveParticle(uint idx, float dt)
     particles[idx].position += particles[idx].velocity * dt;
     // append particle vertex into VA
     particlesVA.append(sf::Vertex(particles[idx].position, getParticleInfo(particles[idx].type).color));
-    // set this particle as solved for this frame
-    solvedFlags[idx] = true;
 }
 
-void PhysicsSolver::solveParticleConcurrent(uint idx, float dt)
+void PhysicsSolver::solveParticleConcurrent(uint idx, uint fromParticle, float dt)
 {
-    uint workerMaxIdx = maxParticles / 2u ;
-    uint workerMaxIdx1 = workerMaxIdx;
+    uint workerMaxIdx = (maxParticles - fromParticle) / 2u ;
+    uint workerMaxIdx1 = maxParticles + workerMaxIdx;
     uint workerIdx = idx;
 
     std::thread worker([&]()
     {
         ParticleInfo info1 = getParticleInfo(particles[idx].type);
-        for(uint j = 0u; j < workerMaxIdx; j++)
+        for(uint j = fromParticle; j < workerMaxIdx; j++)
         {
             if(!particles[j].active) continue;
 
             mtx.lock();
             // if particle2 is the same particle or it already has been solved
-            if(idx == j || solvedFlags[j])
+            if(idx == j)
             {
                 mtx.unlock();
                 continue;
@@ -241,7 +238,7 @@ void PhysicsSolver::solveParticleConcurrent(uint idx, float dt)
 
         mtx.lock();
         // if particle2 is the same particle or it already has been solved
-        if(idx == j || solvedFlags[j])
+        if(idx == j)
         {
             mtx.unlock();
             continue;
@@ -295,7 +292,6 @@ void PhysicsSolver::solveParticleConcurrent(uint idx, float dt)
     particles[idx].velocity = chonk::clampVec(particles[idx].velocity, 0.0f, constants::maxSpeed);;
     particles[idx].position += particles[idx].velocity * dt;
     particlesVA.append(sf::Vertex(particles[idx].position, getParticleInfo(particles[idx].type).color));
-    solvedFlags[idx] = true;
 }
 
 uint PhysicsSolver::countParticles() const
