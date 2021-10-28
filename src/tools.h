@@ -3,6 +3,7 @@
 #include "glm/vec2.hpp"
 #include "glm/geometric.hpp"
 #include <math.h>
+#include <iostream>
 
 namespace chonk {
 
@@ -37,25 +38,33 @@ namespace chonk {
 	}
 
 
-	sf::Vector2f sfNormalize(const sf::Vector2f& vec)
-	{
-        return sf::Vector2f(vec) / sfLength(vec);
-	}
-
-
-	inline sf::Vector2f clampVec(const sf::Vector2f vec, const float minVal, const float maxVal)
-	{
-        float c = sfLength(vec);
-        if(c == 0.0f)
-        {
-            return sf::Vector2f();
-        }
+    sf::Vector2f sfNormalize(const sf::Vector2f& vec)
+    {
+        float length = sfLength(vec);
+        if(length > 0.0f)
+            return sf::Vector2f(vec) / length;
         else
+        {
+            //std::cerr << "chonk::sfNormalize: zero division" << std::endl;
+            return sf::Vector2f(0.0f, 0.0f);
+        }
+    }
+
+
+    inline sf::Vector2f clampVec(const sf::Vector2f vec, const float minVal, const float maxVal)
+    {
+        float c = sfLength(vec);
+        if(c > 0.0f)
         {
             float newLength = glm::clamp(c, minVal, maxVal);
             return sf::Vector2f(vec / c) * newLength;
         }
-	}
+        else
+        {
+            //std::cerr << "chonk::clampVec: zero division" << std::endl;
+            return sf::Vector2f(0.0f, 0.0f);
+        }
+    }
 
 
 	inline float lerp(float a, float b, float ratio)

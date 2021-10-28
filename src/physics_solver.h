@@ -17,11 +17,10 @@ private:
     //std::vector<Particle> particles;
     Particle particles[maxParticles];
     sf::VertexArray particlesVA;        // for rendering particles
-    uint numberOfParticles = 0u;
 
     void trimParticles();
-    void solveParticle(uint idx, uint fromParticle, float dt);
-    void solveParticleConcurrent(uint idx, uint fromParticle, float dt);
+    void solveParticle(uint idx, float dt);
+    void solveParticleConcurrent(uint idx, uint fromParticle,float dt);
     uint countParticles() const;
 public:
     PhysicsSolver();

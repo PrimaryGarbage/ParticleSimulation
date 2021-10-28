@@ -39,45 +39,45 @@ void PhysicsSolver::update(float dt)
 {
     sf::Clock clock;
 
-//    chonk::ChonkyTimer timer;
-//    bool condition = countParticles() == 100u;
+    chonk::ChonkyTimer timer;
+    bool condition = countParticles() == 100u;
 
-//    std::ofstream fs;
-//    if(condition)
-//    {
-//        fs.open("update_opt.txt", std::ifstream::out | std::ios::trunc);
-//        if(fs.good()) Debug::printPersistent("Analysis started.");
-//    }
+    std::ofstream fs;
+    if(condition)
+    {
+        fs.open("update_opt.txt", std::ifstream::out | std::ios::trunc);
+        if(fs.good()) Debug::printPersistent("Analysis started.");
+    }
 
-    // clear particlesVA if no trails
+     //clear particlesVA if no trails
     if(!particleTrails)
         particlesVA.clear();
 
     trimParticles();
 
-//    if(condition)
-//        timer.start();
+    if(condition)
+        timer.start();
 
     for(uint i = 0; i < maxParticles; i++)
     {
         if(particles[i].active)
         {
-            solveParticle(i, i + 1u,dt);
+            solveParticle(i, dt);
             //solveParticleConcurrent(i, dt);
         }
 
-//        if(condition)
-//            fs << "Particle \"" + std::to_string(i) + "\" solved with time: " + std::to_string(timer.peekSinceLastPeek<chonk::microseconds>()) + " mks" << std::endl;
+        if(condition)
+            fs << "Particle \"" + std::to_string(i) + "\" solved with time: " + std::to_string(timer.peekSinceLastPeek<chonk::microseconds>()) + " mks" << std::endl;
     }
 
-//    if(condition)
-//    {
-//        Debug::printPersistent("Analysis completed");
-//        fs << "Summarized time: " + std::to_string(timer.peek<chonk::milliseconds>()) + " ms" << std::endl;
-//        fs.close();
-//        condition = false;
-//    }
-    //Debug::print("Physics frameTime: " + std::to_string(clock.getElapsedTime().asSeconds()));
+    if(condition)
+    {
+        Debug::printPersistent("Analysis completed");
+        fs << "Summarized time: " + std::to_string(timer.peek<chonk::milliseconds>()) + " ms" << std::endl;
+        fs.close();
+        condition = false;
+    }
+    Debug::print("Physics frameTime: " + std::to_string(clock.getElapsedTime().asSeconds()));
     Debug::print("Physics fps: " + std::to_string(1.0f / clock.getElapsedTime().asSeconds()));
     Debug::print("Particles: " + std::to_string(countParticles()));
     Debug::print("ParticlesVA: " + std::to_string(particlesVA.getVertexCount()));
@@ -131,11 +131,11 @@ void PhysicsSolver::trimParticles()
     }
 }
 
-void PhysicsSolver::solveParticle(uint idx, uint fromParticle, float dt)
+void PhysicsSolver::solveParticle(uint idx, float dt)
 {
     ParticleInfo info1 = getParticleInfo(particles[idx].type);
 
-    for(uint j = fromParticle; j < maxParticles; j++)
+    for(uint j = idx + 1u; j < maxParticles; j++)
     {
         if(!particles[j].active) continue;
 
@@ -149,6 +149,10 @@ void PhysicsSolver::solveParticle(uint idx, uint fromParticle, float dt)
         // get distance between them
         float distance = chonk::sfLength(dir);
 
+        // do NOTHING? if distance is 0.0
+        if(distance <= 0.0f)
+            continue;
+
         // skip this particle if distance is too big
         if(distance > constants::maxDistance) continue;
 
@@ -160,11 +164,7 @@ void PhysicsSolver::solveParticle(uint idx, uint fromParticle, float dt)
 
         float impulse;
 
-        if(distance < 0.0f)
-        {
-            impulse = 0.0f;
-        }
-        else
+
         if(distance <= info2.radius)
         {
             impulse = constants::strongForce;
