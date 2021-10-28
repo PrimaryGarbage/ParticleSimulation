@@ -51,6 +51,7 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="src/ChonkyTimer.hpp" />
 		<Unit filename="src/app.cpp" />
 		<Unit filename="src/app.h" />
 		<Unit filename="src/debug.cpp" />
