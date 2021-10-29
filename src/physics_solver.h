@@ -17,6 +17,7 @@ private:
     //std::vector<Particle> particles;
     Particle particles[maxParticles];
     sf::VertexArray particlesVA;        // for rendering particles
+    int vacantIdx = -1;                 // for caching last vacant place in particle array
 
     void trimParticles();
     void solveParticle(uint idx, float dt);

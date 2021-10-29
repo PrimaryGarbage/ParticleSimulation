@@ -312,20 +312,32 @@ void PhysicsSolver::renderParticles(sf::RenderWindow* wnd)
 
 void PhysicsSolver::addParticle(ParticleType type, sf::Vector2f position)
 {
-    uint i;
-    for(i = 0u; i < maxParticles; i++)
+    uint idx;
+
+    if(vacantIdx >= 0)
     {
-        if(!particles[i].active)
-            break;
+        // there is vacant place in cache
+        idx = vacantIdx;
+        vacantIdx = -1;
+    }
+    else
+    {
+        // no vacant place in cache, find it in array
+        for(idx = 0u; idx < maxParticles; idx++)
+        {
+            if(!particles[idx].active)
+                break;
+        }
+
+        // no room
+        if(idx == maxParticles) return;
     }
 
-    // no room
-    if(i == maxParticles) return;
 
-    particles[i].type = type;
-    particles[i].position = position;
-    particles[i].velocity = sf::Vector2f(0.0f, 0.0f);
-    particles[i].active = true;
+    particles[idx].type = type;
+    particles[idx].position = position;
+    particles[idx].velocity = sf::Vector2f(0.0f, 0.0f);
+    particles[idx].active = true;
 }
 
 void PhysicsSolver::clearParticles()
@@ -349,6 +361,7 @@ void PhysicsSolver::trimParticles()
         if(pos.x < 0 || pos.x > windSize.x || pos.y < 0 || pos.y > windSize.y)
         {
             particles[i].active = false;
+            vacantIdx = i;
         }
     }
 }
