@@ -83,53 +83,6 @@ void PhysicsSolver::update(float dt)
     Debug::print("ParticlesVA: " + std::to_string(particlesVA.getVertexCount()));
 }
 
-void PhysicsSolver::renderParticles(sf::RenderWindow* wnd)
-{
-    wnd->draw(particlesVA);
-}
-
-void PhysicsSolver::addParticle(ParticleType type, sf::Vector2f position)
-{
-    uint i;
-    for(i = 0u; i < maxParticles; i++)
-    {
-        if(!particles[i].active)
-            break;
-    }
-
-    // no room
-    if(i == maxParticles) return;
-
-    particles[i].type = type;
-    particles[i].position = position;
-    particles[i].velocity = sf::Vector2f(0.0f, 0.0f);
-    particles[i].active = true;
-}
-
-void PhysicsSolver::clearParticles()
-{
-    for(uint i = 0u; i < maxParticles; i++)
-    {
-        particles[i].active = false;
-    }
-
-    // remove particle trails
-    if(particleTrails)
-        particlesVA.clear();
-}
-
-void PhysicsSolver::trimParticles()
-{
-    const sf::Vector2i &windSize = App::getWindowSize();
-    for(uint i = 0; i < maxParticles; i++)
-    {
-        const sf::Vector2f &pos = particles[i].position;
-        if(pos.x < 0 || pos.x > windSize.x || pos.y < 0 || pos.y > windSize.y)
-        {
-            particles[i].active = false;
-        }
-    }
-}
 
 void PhysicsSolver::solveParticle(uint idx, float dt)
 {
@@ -348,6 +301,54 @@ ParticleInfo PhysicsSolver::getParticleInfo(ParticleType type)
         {
             return ParticleInfo(constants::electronMass, constants::electronCharge, constants::electronRadius,constants::electronColor);
             break;
+        }
+    }
+}
+
+void PhysicsSolver::renderParticles(sf::RenderWindow* wnd)
+{
+    wnd->draw(particlesVA);
+}
+
+void PhysicsSolver::addParticle(ParticleType type, sf::Vector2f position)
+{
+    uint i;
+    for(i = 0u; i < maxParticles; i++)
+    {
+        if(!particles[i].active)
+            break;
+    }
+
+    // no room
+    if(i == maxParticles) return;
+
+    particles[i].type = type;
+    particles[i].position = position;
+    particles[i].velocity = sf::Vector2f(0.0f, 0.0f);
+    particles[i].active = true;
+}
+
+void PhysicsSolver::clearParticles()
+{
+    for(uint i = 0u; i < maxParticles; i++)
+    {
+        particles[i].active = false;
+    }
+
+    // remove particle trails
+    if(particleTrails)
+        particlesVA.clear();
+}
+
+void PhysicsSolver::trimParticles()
+{
+    const sf::Vector2i &windSize = App::getWindowSize();
+    for(uint i = 0; i < maxParticles; i++)
+    {
+        const sf::Vector2f &pos = particles[i].position;
+        if(pos.x < 0 || pos.x > windSize.x || pos.y < 0 || pos.y > windSize.y)
+        {
+            particles[i].active = false;
         }
     }
 }

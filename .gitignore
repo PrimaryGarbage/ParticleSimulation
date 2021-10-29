@@ -4,3 +4,6 @@ obj/
 
 #ignore build files
 bin/
+
+#ingnore optimization statistics
+*opt*
