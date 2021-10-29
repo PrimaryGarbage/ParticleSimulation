@@ -40,7 +40,7 @@ void PhysicsSolver::update(float dt)
     sf::Clock clock;
 
     chonk::ChonkyTimer timer;
-    bool condition = countParticles() == 100u;
+    bool condition = countParticles() == 500u;
 
     std::ofstream fs;
     if(condition)
@@ -92,9 +92,9 @@ void PhysicsSolver::solveParticle(uint idx, float dt)
     {
         if(!particles[j].active) continue;
 
-        // if particle2 is the same particle
-        if(idx == j)
-            continue;
+//        // if particle2 is the same particle
+//        if(idx == j)
+//            continue;
 
         // get direction vector between them
         sf::Vector2f dir = particles[idx].position - particles[j].position;
