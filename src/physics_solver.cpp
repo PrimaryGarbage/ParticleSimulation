@@ -350,6 +350,9 @@ void PhysicsSolver::clearParticles()
     // remove particle trails
     if(particleTrails)
         particlesVA.clear();
+
+    // remove vacant place cache
+    vacantIdx = -1;
 }
 
 void PhysicsSolver::trimParticles()
@@ -361,7 +364,7 @@ void PhysicsSolver::trimParticles()
         if(pos.x < 0 || pos.x > windSize.x || pos.y < 0 || pos.y > windSize.y)
         {
             particles[i].active = false;
-            vacantIdx = i;
+            vacantIdx = i;                  // assign free place in array to vacant cache
         }
     }
 }
