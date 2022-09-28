@@ -1,7 +1,7 @@
 #include "debug.h"
 #include "app.h"
 
-#define FONTS_PATH "resources/fonts/"
+#define FONTS_PATH "res/fonts/"
 
 sf::Font* Debug::font = new sf::Font();
 bool Debug::initialized = false;
@@ -16,7 +16,7 @@ bool Debug::initialize()
 		text->setFont(*font);
 		text->setCharacterSize(12);
 		text->setFillColor(sf::Color::Green);
-		text->setPosition(100.0f, 100.0f);
+		text->setPosition(sf::Vector2f(100.0f, 100.0f));
 		initialized = true;
 		return true;
 	}
@@ -45,7 +45,7 @@ void Debug::draw(sf::RenderWindow* const window)
 	}
 	lines.clear();
 	text->setString(newText);
-	text->setPosition(App::getWindowSize().x - text->getGlobalBounds().width - 10.0f, 10.0f);
+	text->setPosition(sf::Vector2f(App::getWindowSize().x - text->getGlobalBounds().width - 10.0f, 10.0f));
 	window->draw(*text);
 }
 

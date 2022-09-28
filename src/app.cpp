@@ -14,7 +14,7 @@ bool App::initialize(unsigned int width, unsigned int height, const char* name) 
 {
 	windowWidth = width;
 	windowHeight = height;
-	window = new sf::RenderWindow(sf::VideoMode(width, height), name, sf::Style::Titlebar | sf::Style::Close);
+	window = new sf::RenderWindow(sf::VideoMode(sf::Vector2u(width, height)), name, sf::Style::Titlebar | sf::Style::Close);
 	window->setVerticalSyncEnabled(true);
 	window->setFramerateLimit(60u);
 	window->setKeyRepeatEnabled(false);
@@ -29,7 +29,7 @@ void App::run()
 
 	sf::Shader testShader;
 	testShader.loadFromFile("./src/shaders/test_shader.frag", sf::Shader::Fragment);
-	testShader.setParameter("windowSize", sf::Vector2f(getWindowSize()));
+	testShader.setUniform("windowSize", sf::Vector2f(getWindowSize()));
 
 
 	sf::Clock clock;
